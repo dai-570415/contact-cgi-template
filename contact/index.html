@@ -1,0 +1,157 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>contact-cgimail-template</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta property="og:title" content="">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta name="theme-color" content="">
+
+        <!-- ドメイン変更する箇所(絶対パスで指定) -->
+        <meta property="og:url" content="">
+        <meta property="og:image" content="">
+        <link rel="canonical" href="">
+        <!-- ここまで -->
+
+        <link rel="stylesheet" href="../style.min.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    </head>
+
+	<body>
+        <div class="container">
+            <main class="contact">
+                <section class="intro">
+                    <ul>
+                        <li class="active"><div class="icon"></div><div class="text">入力<div></li>
+                        <li class="border"></li>
+                        <li class=""><div class="icon"></div><div class="text">確認<div></li>
+                        <li class="border"></li>
+                        <li class=""><div class="icon"></div><div class="text">完了<div></li>
+                    </ul>
+
+                    <p>
+                        当社の◯◯のページをご覧いただきまして<br class="sp" />
+                        ありがとうございます。<br />
+                        ご応募は下記のフォームよりお願いいたします。<br class="sp" />
+                        必要事項をご記入の上、<br />
+                        「入力内容を確認する」を押してください。
+                    </p>
+                </section>
+
+                <section class="form">
+                    <form action="./postmail.cgi" method="post">
+                        <input type="hidden" name="need" value="fullname furigananame gender email tel prefectures municipalities">
+                        <input type="hidden" name="sort" value="fullname furigananame gender email tel prefectures municipalities workingperiod inquiry">
+
+                        <div class="formSet">
+                            <div class="label">お名前<span>必須</span></div>
+                            <div class="inputWrap">
+                                <input class="input" type="text" name="fullname" placeholder="（例） 山田 太郎" />
+                            </div>
+                        </div>
+
+                        <div class="formSet">
+                            <div class="label">お名前（ふりがな）<span>必須</span></div>
+                            <div class="inputWrap">
+                                <input class="input" type="text" name="furigananame" placeholder="（例） やまだ たろう" />
+                            </div>
+                        </div>
+                        
+                        <div class="formSet">
+                            <div class="label no-relative">性別<span>必須</span></div>
+                            <div class="inputWrap">
+                                <div class="radioItemWrap">
+                                    <div class="radioItem">
+                                        <input type="radio" name="gender" value="男性" id="man" checked />
+                                        <label for="man">男性</label>
+                                    </div>
+                                    <div class="radioItem">
+                                        <input type="radio" name="gender" value="女性" id="female"/>
+                                        <label for="female">女性</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="formSet">
+                            <div class="label">メールアドレス<span>必須</span></div>
+                            <div class="inputWrap">
+                                <input class="input" type="text" name="email" id="email" placeholder="（例） mail@example.jp" />
+                                <h4>再度メールアドレスを入力してください</h4>
+                                <input class="input" type="text" name="emailConf" placeholder="（例） mail@example.jp" />
+                            </div>
+                        </div>
+
+                        <div class="formSet">
+                            <div class="label">電話番号<span>必須</span></div>
+                            <div class="inputWrap">
+                                <input class="input" type="text" name="tel" placeholder="（例） 0781234567 ※ハイフン不要" />
+                            </div>
+                        </div>
+
+                        <div class="formSet">
+                            <div class="label">お住まい<span>必須</span></div>
+                            <div class="inputWrap">
+                                <select name="prefectures" id="prefectures">
+                                    <option value="" selected>都道府県を選択</option>
+                                </select>
+                                <input class="input" type="text" name="municipalities" placeholder="市区町村" />
+                            </div>
+                        </div>
+
+                        <div class="formSet">
+                            <div class="label no-relative">勤務予定期間<span class="any">任意</span></div>
+                            <div class="inputWrap">
+                                <div class="radioItemWrap">
+                                    <div class="radioItem">
+                                        <input type="checkbox" name="workingperiod" value="1ヶ月以内" id="onemonth"/>
+                                        <label for="onemonth">1ヶ月以内</label>
+                                    </div>
+                                    <div class="radioItem">
+                                        <input type="checkbox" name="workingperiod" value="1～3ヶ月以内" id="onemonth_threemonth"/>
+                                        <label for="onemonth_threemonth">1～3ヶ月以内</label>
+                                    </div>
+                                    <div class="radioItem">
+                                        <input type="checkbox" name="workingperiod" value="4～6ヵ月以内" id="fourmonth_sixmonth"/>
+                                        <label for="fourmonth_sixmonth">4～6ヵ月以内</label>
+                                    </div>
+                                    <div class="radioItem">
+                                        <input type="checkbox" name="workingperiod" value="6ヵ月以上" id="sixmonth"/>
+                                        <label for="sixmonth">6ヵ月以上</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="formSet lastFormSet">
+                            <div class="label">お問い合わせ<span class="any">任意</span></div>
+                            <div class="inputWrap">
+                                <textarea class="textarea" name="inquiry" placeholder="お問い合わせ"></textarea>
+                            </div>
+                        </div>
+                        
+                        <button type="submit">
+                            入力内容を確認する
+                            <span><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></span>
+                        </button>
+                    </form>
+            </main>
+        </div>
+
+        <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
+        <script src="../js/main.js"></script>
+    </body>
+</html> 
